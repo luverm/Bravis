@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Heart, Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
@@ -25,14 +26,13 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-bravis-600">
-                <Heart className="h-5 w-5 text-white" fill="white" />
-              </div>
-              <span className="text-lg font-bold text-white font-display">
-                Vrienden van Bravis
-              </span>
-            </div>
+            <Image
+              src="/logo-bravis-vrienden.png"
+              alt="Stichting Vrienden van Bravis Ziekenhuis"
+              width={180}
+              height={60}
+              className="h-12 w-auto brightness-0 invert"
+            />
             <p className="mt-4 text-sm leading-relaxed text-bravis-300">
               Samen zorgen wij voor extra voorzieningen die het verblijf in het
               Bravis ziekenhuis aangenamer maken voor patiënten.

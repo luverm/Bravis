@@ -195,16 +195,26 @@ export default function HomePage() {
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             {featuredProjects.map((project, idx) => (
               <FadeIn key={project.id} delay={idx * 0.1}>
-                <article className="group relative overflow-hidden rounded-2xl border border-warmgray-200 bg-white p-8 transition-all hover:-translate-y-1 hover:shadow-xl">
-                  <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-bravis-50 transition-transform group-hover:scale-150" />
-                  <div className="relative">
+                <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-warmgray-200 bg-white transition-all hover:-translate-y-1 hover:shadow-xl">
+                  {/* Project Image */}
+                  <div className="relative h-48 w-full overflow-hidden bg-bravis-50">
+                    <img
+                      src={project.image}
+                      alt={project.imageAlt}
+                      loading="eager"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  </div>
+                  <div className="relative flex-1 p-6">
                     <span className="inline-block rounded-full bg-bravis-100 px-3 py-1 text-xs font-semibold text-bravis-700">
                       {project.category}
                     </span>
-                    <h3 className="mt-4 text-lg font-bold leading-snug">
+                    <h3 className="mt-3 text-lg font-bold leading-snug">
                       {project.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-warmgray-400">
+                    <p className="mt-2 text-sm leading-relaxed text-warmgray-400 line-clamp-3">
                       {project.description}
                     </p>
                     <p className="mt-4 text-xs font-medium text-bravis-400">

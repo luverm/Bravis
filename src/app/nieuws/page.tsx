@@ -8,6 +8,33 @@ import {
 } from "@/components/AnimatedSection";
 import Link from "next/link";
 
+const newsImages: Record<string, { src: string; alt: string }> = {
+  "borst-vooruit": {
+    src: "https://vriendenvan.bravisziekenhuis.nl/files/news_home/35428/borst-vooruit.png",
+    alt: "Theatervoorstelling Borst Vooruit",
+  },
+  draagdoeken: {
+    src: "https://vriendenvan.bravisziekenhuis.nl/files/news_home/35434/draagdoeken.png",
+    alt: "Draagdoeken voor te vroeg geboren baby's",
+  },
+  biezenhof: {
+    src: "https://vriendenvan.bravisziekenhuis.nl/files/news_home/35394/school-biezenhof.png",
+    alt: "Basisschool De Biezenhof actie voor Kind & Jeugd",
+  },
+  "interactieve-wanden": {
+    src: "https://vriendenvan.bravisziekenhuis.nl/files/news_home/35412/vriendenstichting-2.png",
+    alt: "Interactieve spelletjeswand op de Spoedeisende Hulp",
+  },
+  "le-garage": {
+    src: "https://vriendenvan.bravisziekenhuis.nl/files/news_home/35415/checque-le-garage.jpg",
+    alt: "Cheque overhandiging Kindercentrum Le Garage",
+  },
+  sponsorloop: {
+    src: "https://vriendenvan.bravisziekenhuis.nl/files/news_home/35385/basisschoolleerlingen-boz-spelletjeswand-k-j.jpg",
+    alt: "Basisschoolleerlingen bij de spelletjeswand Kind & Jeugd",
+  },
+};
+
 const newsItems = [
   {
     id: "borst-vooruit",
@@ -87,35 +114,50 @@ export default function NieuwsPage() {
       <section className="py-16 sm:py-24">
         <div className="container-section">
           <StaggerContainer className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {newsItems.map((item) => (
-              <StaggerItem key={item.id}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-warmgray-200 bg-white transition-all hover:-translate-y-1 hover:shadow-xl">
-                  {/* Top accent bar */}
-                  <div className="h-1.5 bg-gradient-to-r from-bravis-500 to-bravis-400" />
-                  <div className="flex flex-1 flex-col p-8">
-                    <div className="flex items-center justify-between">
-                      <span
-                        className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                          categoryColors[item.category] || "bg-warmgray-100 text-warmgray-500"
-                        }`}
-                      >
-                        {item.category}
-                      </span>
-                      <span className="flex items-center gap-1.5 text-xs text-warmgray-400">
-                        <Calendar className="h-3.5 w-3.5" />
-                        {item.date}
-                      </span>
+            {newsItems.map((item) => {
+              const img = newsImages[item.id];
+              return (
+                <StaggerItem key={item.id}>
+                  <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-warmgray-200 bg-white transition-all hover:-translate-y-1 hover:shadow-xl">
+                    {/* News Image */}
+                    {img && (
+                      <div className="relative h-48 w-full overflow-hidden bg-bravis-50">
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          loading="eager"
+                          decoding="async"
+                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                      </div>
+                    )}
+                    <div className="flex flex-1 flex-col p-6">
+                      <div className="flex items-center justify-between">
+                        <span
+                          className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                            categoryColors[item.category] ||
+                            "bg-warmgray-100 text-warmgray-500"
+                          }`}
+                        >
+                          {item.category}
+                        </span>
+                        <span className="flex items-center gap-1.5 text-xs text-warmgray-400">
+                          <Calendar className="h-3.5 w-3.5" />
+                          {item.date}
+                        </span>
+                      </div>
+                      <h3 className="mt-4 text-lg font-bold leading-snug">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 flex-1 text-sm leading-relaxed text-warmgray-400">
+                        {item.summary}
+                      </p>
                     </div>
-                    <h3 className="mt-4 text-lg font-bold leading-snug">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-warmgray-400">
-                      {item.summary}
-                    </p>
-                  </div>
-                </article>
-              </StaggerItem>
-            ))}
+                  </article>
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
       </section>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Heart } from "lucide-react";
 
@@ -37,18 +38,15 @@ export default function Header() {
       <nav className="container-section">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="group flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-bravis-600 transition-transform group-hover:scale-110">
-              <Heart className="h-5 w-5 text-white" fill="white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-bold leading-tight text-bravis-950 font-display">
-                Vrienden van Bravis
-              </span>
-              <span className="text-[11px] font-medium tracking-wider text-bravis-400 uppercase">
-                Ziekenhuis
-              </span>
-            </div>
+          <Link href="/" className="group flex items-center gap-3 transition-transform hover:scale-105">
+            <Image
+              src="/logo-bravis-vrienden.png"
+              alt="Stichting Vrienden van Bravis Ziekenhuis"
+              width={180}
+              height={60}
+              className="h-12 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
