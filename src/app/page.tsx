@@ -20,6 +20,7 @@ import {
   StaggerItem,
 } from "@/components/AnimatedSection";
 import Counter from "@/components/Counter";
+import PhotoMarquee from "@/components/PhotoMarquee";
 import { projects } from "@/lib/projects";
 
 const highlights = [
@@ -67,12 +68,8 @@ export default function HomePage() {
   return (
     <>
       {/* ===== HERO ===== */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-bravis-50 via-white to-bravis-100 pt-20">
-        {/* Decorative blobs */}
-        <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-bravis-200/40 blur-3xl" />
-        <div className="pointer-events-none absolute -left-20 bottom-0 h-[400px] w-[400px] rounded-full bg-bravis-100/30 blur-3xl" />
-
-        <div className="container-section relative py-24 sm:py-32 lg:py-40">
+      <section className="relative overflow-hidden bg-white pt-20">
+        <div className="container-section relative py-20 sm:py-28 lg:py-36">
           <div className="mx-auto max-w-4xl text-center">
             <FadeIn>
               <span className="inline-flex items-center gap-2 rounded-full bg-bravis-100 px-4 py-1.5 text-xs font-semibold text-bravis-700">
@@ -111,21 +108,13 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Wave divider */}
-        <div className="relative h-16 sm:h-24">
-          <svg
-            viewBox="0 0 1440 100"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="absolute bottom-0 w-full"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M0 50C240 100 480 0 720 50C960 100 1200 0 1440 50V100H0V50Z"
-              fill="white"
-            />
-          </svg>
-        </div>
+        {/* Photo marquee strip */}
+        <FadeIn delay={0.4}>
+          <PhotoMarquee />
+        </FadeIn>
+
+        {/* Fade-out gradient at bottom */}
+        <div className="pointer-events-none relative z-10 -mt-8 h-16 bg-gradient-to-b from-transparent to-white" />
       </section>
 
       {/* ===== STATS ===== */}
