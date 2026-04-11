@@ -87,7 +87,7 @@ const newsItems = [
 ];
 
 const categoryColors: Record<string, string> = {
-  Evenement: "bg-accent-100 text-accent-700",
+  Evenement: "bg-bravis-100 text-bravis-600",
   Project: "bg-bravis-100 text-bravis-700",
   Donatie: "bg-green-100 text-green-700",
 };

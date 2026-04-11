@@ -15,7 +15,7 @@ export default function IdeePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-bravis-50 via-white to-accent-50 pt-32 pb-16">
+      <section className="relative overflow-hidden bg-gradient-to-br from-bravis-50 via-white to-bravis-50 pt-32 pb-16">
         <div className="pointer-events-none absolute -left-20 top-40 h-[300px] w-[300px] rounded-full bg-bravis-100/50 blur-3xl" />
         <div className="container-section relative">
           <FadeIn className="mx-auto max-w-3xl text-center">
@@ -52,7 +52,7 @@ export default function IdeePage() {
                     <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-bravis-100">
                       <Sparkles className="h-8 w-8 text-bravis-600" />
                     </div>
-                    <h3 className="mt-4 text-xl font-bold text-bravis-950">
+                    <h3 className="mt-4 text-xl font-bold text-dark">
                       Bedankt voor uw idee!
                     </h3>
                     <p className="mt-2 text-warmgray-400">
@@ -66,7 +66,7 @@ export default function IdeePage() {
                       <div>
                         <label
                           htmlFor="naam"
-                          className="block text-sm font-medium text-bravis-950"
+                          className="block text-sm font-medium text-dark"
                         >
                           Naam *
                         </label>
@@ -75,14 +75,14 @@ export default function IdeePage() {
                           id="naam"
                           name="naam"
                           required
-                          className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-bravis-950 outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
+                          className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-dark outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
                           placeholder="Uw naam"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium text-bravis-950"
+                          className="block text-sm font-medium text-dark"
                         >
                           E-mail *
                         </label>
@@ -91,7 +91,7 @@ export default function IdeePage() {
                           id="email"
                           name="email"
                           required
-                          className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-bravis-950 outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
+                          className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-dark outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
                           placeholder="uw@email.nl"
                         />
                       </div>
@@ -101,7 +101,7 @@ export default function IdeePage() {
                       <div>
                         <label
                           htmlFor="adres"
-                          className="block text-sm font-medium text-bravis-950"
+                          className="block text-sm font-medium text-dark"
                         >
                           Adres
                         </label>
@@ -109,14 +109,14 @@ export default function IdeePage() {
                           type="text"
                           id="adres"
                           name="adres"
-                          className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-bravis-950 outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
+                          className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-dark outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
                           placeholder="Straat, plaats"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="telefoon"
-                          className="block text-sm font-medium text-bravis-950"
+                          className="block text-sm font-medium text-dark"
                         >
                           Telefoon
                         </label>
@@ -124,7 +124,7 @@ export default function IdeePage() {
                           type="tel"
                           id="telefoon"
                           name="telefoon"
-                          className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-bravis-950 outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
+                          className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-dark outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
                           placeholder="06-12345678"
                         />
                       </div>
@@ -133,7 +133,7 @@ export default function IdeePage() {
                     <div>
                       <label
                         htmlFor="idee"
-                        className="block text-sm font-medium text-bravis-950"
+                        className="block text-sm font-medium text-dark"
                       >
                         Uw Idee *
                       </label>
@@ -142,7 +142,7 @@ export default function IdeePage() {
                         name="idee"
                         rows={6}
                         required
-                        className="mt-2 w-full resize-none rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-bravis-950 outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
+                        className="mt-2 w-full resize-none rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-dark outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
                         placeholder="Beschrijf uw idee zo uitgebreid mogelijk. Wat wilt u verbeteren? Voor welke patiënten? Hoe kan het gerealiseerd worden?"
                       />
                     </div>

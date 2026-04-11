@@ -90,7 +90,7 @@ export default function OverOnsPage() {
 
             <FadeInRight>
               <div className="rounded-2xl border border-warmgray-200 bg-white p-10">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-100 text-accent-600">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-bravis-100 text-bravis-500">
                   <Eye className="h-7 w-7" />
                 </div>
                 <h2 className="mt-6 text-2xl font-bold">Onze Visie</h2>
@@ -172,7 +172,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* ANBI Section */}
-      <section id="anbi" className="bg-bravis-950 py-20 sm:py-28">
+      <section id="anbi" className="bg-dark py-20 sm:py-28">
         <div className="container-section">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <FadeInLeft>

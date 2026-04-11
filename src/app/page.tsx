@@ -70,7 +70,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-bravis-50 via-white to-bravis-100 pt-20">
         {/* Decorative blobs */}
         <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-bravis-200/40 blur-3xl" />
-        <div className="pointer-events-none absolute -left-20 bottom-0 h-[400px] w-[400px] rounded-full bg-accent-100/30 blur-3xl" />
+        <div className="pointer-events-none absolute -left-20 bottom-0 h-[400px] w-[400px] rounded-full bg-bravis-100/30 blur-3xl" />
 
         <div className="container-section relative py-24 sm:py-32 lg:py-40">
           <div className="mx-auto max-w-4xl text-center">
@@ -239,7 +239,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="bg-bravis-950 py-20 sm:py-28">
+      <section className="bg-dark py-20 sm:py-28">
         <div className="container-section">
           <FadeIn className="text-center">
             <h2 className="section-heading text-white">
@@ -278,11 +278,11 @@ export default function HomePage() {
 
       {/* ===== CTA / DONATE ===== */}
       <section className="relative overflow-hidden py-20 sm:py-28">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-bravis-50 to-accent-50" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-bravis-50 to-bravis-50" />
         <div className="container-section relative text-center">
           <FadeIn>
             <div className="mx-auto max-w-2xl">
-              <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-100 text-accent-600">
+              <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-bravis-100 text-bravis-500">
                 <Gift className="h-8 w-8" />
               </div>
               <h2 className="mt-6 section-heading">

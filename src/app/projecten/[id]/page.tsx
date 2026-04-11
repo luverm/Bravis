@@ -18,7 +18,7 @@ export default function ProjectDetailPage() {
     return (
       <div className="flex min-h-screen items-center justify-center pt-20">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-bravis-950">
+          <h1 className="text-4xl font-bold text-dark">
             Project niet gevonden
           </h1>
           <p className="mt-4 text-warmgray-400">
@@ -48,7 +48,7 @@ export default function ProjectDetailPage() {
   return (
     <>
       {/* Hero with image */}
-      <section className="relative overflow-hidden bg-bravis-950 pt-20">
+      <section className="relative overflow-hidden bg-dark pt-20">
         <div className="absolute inset-0">
           <img
             src={project.image}
@@ -56,7 +56,7 @@ export default function ProjectDetailPage() {
             className="h-full w-full object-cover opacity-30"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-bravis-950 via-bravis-950/80 to-bravis-950/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-dark/40" />
         </div>
 
         <div className="container-section relative py-16 sm:py-24">
@@ -121,7 +121,7 @@ export default function ProjectDetailPage() {
               {/* Extra images gallery */}
               {extraImages.length > 0 && (
                 <div className="mt-10">
-                  <h3 className="text-lg font-bold text-bravis-950">
+                  <h3 className="text-lg font-bold text-dark">
                     Foto&apos;s
                   </h3>
                   <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -154,13 +154,13 @@ export default function ProjectDetailPage() {
                   <div className="mt-4 space-y-3">
                     <div className="flex items-center justify-between border-b border-warmgray-100 pb-3">
                       <span className="text-sm text-warmgray-400">Jaar</span>
-                      <span className="text-sm font-semibold text-bravis-950">
+                      <span className="text-sm font-semibold text-dark">
                         {project.year}
                       </span>
                     </div>
                     <div className="flex items-center justify-between border-b border-warmgray-100 pb-3">
                       <span className="text-sm text-warmgray-400">Datum</span>
-                      <span className="text-sm font-semibold text-bravis-950">
+                      <span className="text-sm font-semibold text-dark">
                         {project.date}
                       </span>
                     </div>

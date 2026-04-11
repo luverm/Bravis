@@ -121,7 +121,7 @@ export default function ProjectenPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`rounded-full px-3 py-1 text-xs font-medium transition-all ${
                   activeCategory === cat
-                    ? "bg-bravis-950 text-white"
+                    ? "bg-dark text-white"
                     : "bg-warmgray-50 text-warmgray-400 hover:bg-bravis-50 hover:text-bravis-600"
                 }`}
               >

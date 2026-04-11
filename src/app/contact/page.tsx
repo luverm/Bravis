@@ -56,7 +56,7 @@ export default function ContactPage() {
                     <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-bravis-100">
                       <Heart className="h-8 w-8 text-bravis-600" fill="currentColor" />
                     </div>
-                    <h3 className="mt-4 text-xl font-bold text-bravis-950">
+                    <h3 className="mt-4 text-xl font-bold text-dark">
                       Bedankt voor uw bericht!
                     </h3>
                     <p className="mt-2 text-warmgray-400">
@@ -69,7 +69,7 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="name"
-                          className="block text-sm font-medium text-bravis-950"
+                          className="block text-sm font-medium text-dark"
                         >
                           Naam *
                         </label>
@@ -78,14 +78,14 @@ export default function ContactPage() {
                           id="name"
                           name="name"
                           required
-                          className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-bravis-950 outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
+                          className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-dark outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
                           placeholder="Uw naam"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium text-bravis-950"
+                          className="block text-sm font-medium text-dark"
                         >
                           E-mail *
                         </label>
@@ -94,7 +94,7 @@ export default function ContactPage() {
                           id="email"
                           name="email"
                           required
-                          className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-bravis-950 outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
+                          className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-dark outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
                           placeholder="uw@email.nl"
                         />
                       </div>
@@ -103,14 +103,14 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="subject"
-                        className="block text-sm font-medium text-bravis-950"
+                        className="block text-sm font-medium text-dark"
                       >
                         Onderwerp
                       </label>
                       <select
                         id="subject"
                         name="subject"
-                        className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-bravis-950 outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
+                        className="mt-2 w-full rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-dark outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
                       >
                         <option>Algemene vraag</option>
                         <option>Doneren / Sponsoring</option>
@@ -124,7 +124,7 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="message"
-                        className="block text-sm font-medium text-bravis-950"
+                        className="block text-sm font-medium text-dark"
                       >
                         Bericht *
                       </label>
@@ -133,7 +133,7 @@ export default function ContactPage() {
                         name="message"
                         rows={5}
                         required
-                        className="mt-2 w-full resize-none rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-bravis-950 outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
+                        className="mt-2 w-full resize-none rounded-xl border border-warmgray-200 bg-warmgray-50 px-4 py-3 text-sm text-dark outline-none transition-colors focus:border-bravis-400 focus:ring-2 focus:ring-bravis-100"
                         placeholder="Schrijf uw bericht..."
                       />
                     </div>
@@ -157,7 +157,7 @@ export default function ContactPage() {
                       <MapPin className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-bravis-950">Adres</h3>
+                      <h3 className="font-bold text-dark">Adres</h3>
                       <p className="text-sm text-warmgray-400">
                         Postbus 999, 4700 AZ Roosendaal
                       </p>
@@ -172,7 +172,7 @@ export default function ContactPage() {
                       <Mail className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-bravis-950">E-mail</h3>
+                      <h3 className="font-bold text-dark">E-mail</h3>
                       <a
                         href="mailto:vriendenvanbravis@bravis.nl"
                         className="text-sm text-bravis-600 hover:underline"
@@ -184,7 +184,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Bank */}
-                <div className="rounded-2xl bg-bravis-950 p-6">
+                <div className="rounded-2xl bg-dark p-6">
                   <h3 className="font-bold text-white">Bankgegevens</h3>
                   <p className="mt-3 font-mono text-lg font-semibold text-bravis-200">
                     NL05 RABO 0310.187.923
@@ -199,7 +199,7 @@ export default function ContactPage() {
 
                 {/* Social */}
                 <div className="rounded-2xl border border-warmgray-200 bg-white p-6">
-                  <h3 className="font-bold text-bravis-950">Volg Ons</h3>
+                  <h3 className="font-bold text-dark">Volg Ons</h3>
                   <div className="mt-4 flex gap-3">
                     {[Facebook, Instagram, Linkedin].map((Icon, idx) => (
                       <a

@@ -21,7 +21,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-warmgray-200 bg-bravis-950">
+    <footer className="border-t border-warmgray-200 bg-dark">
       <div className="container-section py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}

@@ -83,11 +83,11 @@ export default function WordVriendPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-accent-50 via-white to-bravis-50 pt-32 pb-16">
-        <div className="pointer-events-none absolute -right-40 top-20 h-[400px] w-[400px] rounded-full bg-accent-100/40 blur-3xl" />
+      <section className="relative overflow-hidden bg-gradient-to-br from-bravis-50 via-white to-bravis-50 pt-32 pb-16">
+        <div className="pointer-events-none absolute -right-40 top-20 h-[400px] w-[400px] rounded-full bg-bravis-100/40 blur-3xl" />
         <div className="container-section relative">
           <FadeIn className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-100 text-accent-600">
+            <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-bravis-100 text-bravis-500">
               <Heart className="h-8 w-8" fill="currentColor" />
             </div>
             <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
@@ -153,7 +153,7 @@ export default function WordVriendPage() {
       </section>
 
       {/* Bank details + Impact */}
-      <section className="bg-bravis-950 py-20 sm:py-28">
+      <section className="bg-dark py-20 sm:py-28">
         <div className="container-section">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <FadeInLeft>
