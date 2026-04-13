@@ -4,17 +4,44 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Heart, Calendar, Tag, Share2 } from "lucide-react";
 import { FadeIn, FadeInLeft, FadeInRight } from "@/components/AnimatedSection";
-import { projects } from "@/lib/projects";
-import { projectArticles } from "@/lib/articles";
+import { useArtikel } from "shovel-cms/hooks";
+import { useArtikelen } from "shovel-cms/hooks";
 
 export default function ProjectDetailPage() {
   const params = useParams();
-  const id = params.id as string;
+  const slug = params.id as string;
 
-  const project = projects.find((p) => p.id === id);
-  const article = projectArticles[id];
+  const { artikel, laden } = useArtikel(slug);
+  const { artikelen } = useArtikelen();
 
-  if (!project) {
+  const formatDate = (dateStr: string | null) => {
+    if (!dateStr) return "";
+    return new Date(dateStr).toLocaleDateString("nl-NL", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
+
+  const getYear = (dateStr: string | null) => {
+    if (!dateStr) return null;
+    return new Date(dateStr).getFullYear();
+  };
+
+  if (laden) {
+    return (
+      <div className="flex min-h-screen items-center justify-center pt-20">
+        <div className="flex items-center gap-3">
+          <div className="h-6 w-6 animate-spin rounded-full border-2 border-bravis-600 border-t-transparent" />
+          <span className="text-sm font-medium text-warmgray-400">
+            Project laden...
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  if (!artikel) {
     return (
       <div className="flex min-h-screen items-center justify-center pt-20">
         <div className="text-center">
@@ -33,31 +60,33 @@ export default function ProjectDetailPage() {
     );
   }
 
-  // Find related projects (same category or year, max 3)
-  const related = projects
+  const date = artikel.gepubliceerd_op || artikel.aangemaakt_op;
+  const year = getYear(date);
+
+  // Find related articles (same category, max 3)
+  const related = artikelen
     .filter(
-      (p) =>
-        p.id !== project.id &&
-        (p.category === project.category || p.year === project.year)
+      (a) =>
+        a.id !== artikel.id &&
+        a.categorie === artikel.categorie
     )
     .slice(0, 3);
-
-  const content = article?.content || project.description;
-  const extraImages = article?.images || [];
 
   return (
     <>
       {/* Hero with image */}
       <section className="relative overflow-hidden bg-dark pt-20">
-        <div className="absolute inset-0">
-          <img
-            src={project.image}
-            alt={project.imageAlt}
-            className="h-full w-full object-cover opacity-30"
-            loading="eager"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-dark/40" />
-        </div>
+        {artikel.afbeelding_url && (
+          <div className="absolute inset-0">
+            <img
+              src={artikel.afbeelding_url}
+              alt={artikel.titel}
+              className="h-full w-full object-cover opacity-30"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-dark/40" />
+          </div>
+        )}
 
         <div className="container-section relative py-16 sm:py-24">
           <FadeIn>
@@ -70,21 +99,25 @@ export default function ProjectDetailPage() {
             </Link>
 
             <div className="flex flex-wrap items-center gap-3">
-              <span className="rounded-full bg-bravis-600 px-3 py-1 text-xs font-semibold text-white">
-                {project.category}
-              </span>
+              {artikel.categorie && (
+                <span className="rounded-full bg-bravis-600 px-3 py-1 text-xs font-semibold text-white">
+                  {artikel.categorie}
+                </span>
+              )}
               <span className="flex items-center gap-1.5 text-sm text-white/60">
                 <Calendar className="h-4 w-4" />
-                {project.date}
+                {formatDate(date)}
               </span>
-              <span className="flex items-center gap-1.5 text-sm text-white/60">
-                <Tag className="h-4 w-4" />
-                {project.year}
-              </span>
+              {year && (
+                <span className="flex items-center gap-1.5 text-sm text-white/60">
+                  <Tag className="h-4 w-4" />
+                  {year}
+                </span>
+              )}
             </div>
 
             <h1 className="mt-4 max-w-4xl text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-              {project.title}
+              {artikel.titel}
             </h1>
           </FadeIn>
         </div>
@@ -97,48 +130,31 @@ export default function ProjectDetailPage() {
             {/* Main content */}
             <FadeInLeft className="lg:col-span-2">
               {/* Main image */}
-              <div className="overflow-hidden rounded-2xl">
-                <img
-                  src={project.image}
-                  alt={project.imageAlt}
-                  loading="eager"
-                  className="w-full object-cover"
+              {artikel.afbeelding_url && (
+                <div className="overflow-hidden rounded-2xl">
+                  <img
+                    src={artikel.afbeelding_url}
+                    alt={artikel.titel}
+                    loading="eager"
+                    className="w-full object-cover"
+                  />
+                </div>
+              )}
+
+              {/* Article text (HTML from rich text editor) */}
+              {artikel.beschrijving && (
+                <div
+                  className="mt-8 prose prose-warmgray max-w-none"
+                  dangerouslySetInnerHTML={{ __html: artikel.beschrijving }}
                 />
-              </div>
+              )}
 
-              {/* Article text */}
-              <div className="mt-8 space-y-4">
-                {content.split("\n\n").map((paragraph, idx) => (
-                  <p
-                    key={idx}
-                    className="text-base leading-relaxed text-warmgray-500"
-                  >
-                    {paragraph}
+              {/* Fallback to samenvatting if no beschrijving */}
+              {!artikel.beschrijving && artikel.samenvatting && (
+                <div className="mt-8 space-y-4">
+                  <p className="text-base leading-relaxed text-warmgray-500">
+                    {artikel.samenvatting}
                   </p>
-                ))}
-              </div>
-
-              {/* Extra images gallery */}
-              {extraImages.length > 0 && (
-                <div className="mt-10">
-                  <h3 className="text-lg font-bold text-dark">
-                    Foto&apos;s
-                  </h3>
-                  <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                    {extraImages.map((img, idx) => (
-                      <div
-                        key={idx}
-                        className="overflow-hidden rounded-xl"
-                      >
-                        <img
-                          src={img}
-                          alt={`${project.title} - foto ${idx + 1}`}
-                          loading="eager"
-                          className="w-full object-cover"
-                        />
-                      </div>
-                    ))}
-                  </div>
                 </div>
               )}
             </FadeInLeft>
@@ -152,26 +168,30 @@ export default function ProjectDetailPage() {
                     Projectdetails
                   </h3>
                   <div className="mt-4 space-y-3">
-                    <div className="flex items-center justify-between border-b border-warmgray-100 pb-3">
-                      <span className="text-sm text-warmgray-400">Jaar</span>
-                      <span className="text-sm font-semibold text-dark">
-                        {project.year}
-                      </span>
-                    </div>
+                    {year && (
+                      <div className="flex items-center justify-between border-b border-warmgray-100 pb-3">
+                        <span className="text-sm text-warmgray-400">Jaar</span>
+                        <span className="text-sm font-semibold text-dark">
+                          {year}
+                        </span>
+                      </div>
+                    )}
                     <div className="flex items-center justify-between border-b border-warmgray-100 pb-3">
                       <span className="text-sm text-warmgray-400">Datum</span>
                       <span className="text-sm font-semibold text-dark">
-                        {project.date}
+                        {formatDate(date)}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-warmgray-400">
-                        Categorie
-                      </span>
-                      <span className="rounded-full bg-bravis-100 px-3 py-1 text-xs font-semibold text-bravis-700">
-                        {project.category}
-                      </span>
-                    </div>
+                    {artikel.categorie && (
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-warmgray-400">
+                          Categorie
+                        </span>
+                        <span className="rounded-full bg-bravis-100 px-3 py-1 text-xs font-semibold text-bravis-700">
+                          {artikel.categorie}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -202,7 +222,7 @@ export default function ProjectDetailPage() {
                       onClick={() => {
                         if (navigator.share) {
                           navigator.share({
-                            title: project.title,
+                            title: artikel.titel,
                             url: window.location.href,
                           });
                         } else {
@@ -232,24 +252,30 @@ export default function ProjectDetailPage() {
             </FadeIn>
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((p) => (
-                <Link key={p.id} href={`/projecten/${p.id}`}>
+                <Link key={p.id} href={`/projecten/${p.slug}`}>
                   <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-warmgray-200 bg-white transition-all hover:-translate-y-1 hover:shadow-xl">
-                    <div className="relative h-40 w-full overflow-hidden bg-bravis-50">
-                      <img
-                        src={p.image}
-                        alt={p.imageAlt}
-                        loading="eager"
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                      <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-bravis-700 backdrop-blur-sm">
-                        {p.category}
-                      </span>
-                    </div>
+                    {p.afbeelding_url && (
+                      <div className="relative h-40 w-full overflow-hidden bg-bravis-50">
+                        <img
+                          src={p.afbeelding_url}
+                          alt={p.titel}
+                          loading="eager"
+                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                        {p.categorie && (
+                          <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-bravis-700 backdrop-blur-sm">
+                            {p.categorie}
+                          </span>
+                        )}
+                      </div>
+                    )}
                     <div className="p-5">
-                      <p className="text-xs text-bravis-500">{p.date}</p>
+                      <p className="text-xs text-bravis-500">
+                        {formatDate(p.gepubliceerd_op || p.aangemaakt_op)}
+                      </p>
                       <h3 className="mt-1 text-sm font-bold leading-snug">
-                        {p.title}
+                        {p.titel}
                       </h3>
                     </div>
                   </article>
