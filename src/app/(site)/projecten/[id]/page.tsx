@@ -1,18 +1,49 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Heart, Calendar, Tag, Share2 } from "lucide-react";
 import { FadeIn, FadeInLeft, FadeInRight } from "@/components/AnimatedSection";
-import { useArtikel } from "shovel-cms/hooks";
-import { useArtikelen } from "shovel-cms/hooks";
+
+interface Artikel {
+  id: string;
+  titel: string;
+  slug: string;
+  beschrijving: string | null;
+  samenvatting: string | null;
+  afbeelding_url: string | null;
+  categorie: string | null;
+  status: string;
+  volgorde: number;
+  gepubliceerd_op: string | null;
+  aangemaakt_op: string;
+  bijgewerkt_op: string;
+}
 
 export default function ProjectDetailPage() {
   const params = useParams();
   const slug = params.id as string;
 
-  const { artikel, laden } = useArtikel(slug);
-  const { artikelen } = useArtikelen();
+  const [artikel, setArtikel] = useState<Artikel | null>(null);
+  const [laden, setLaden] = useState(true);
+  const [artikelen, setArtikelen] = useState<Artikel[]>([]);
+
+  useEffect(() => {
+    if (!slug) return;
+    fetch(`/api/cms/artikelen/${slug}?_t=${Date.now()}`, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data) => setArtikel(data.artikel || null))
+      .catch(() => {})
+      .finally(() => setLaden(false));
+  }, [slug]);
+
+  useEffect(() => {
+    fetch(`/api/cms/artikelen?_t=${Date.now()}`, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data) => setArtikelen(data.artikelen || []))
+      .catch(() => {});
+  }, []);
 
   const formatDate = (dateStr: string | null) => {
     if (!dateStr) return "";

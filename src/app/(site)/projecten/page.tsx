@@ -1,13 +1,36 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Heart, Filter, Calendar } from "lucide-react";
 import { FadeIn } from "@/components/AnimatedSection";
-import { useArtikelen } from "shovel-cms/hooks";
 import Link from "next/link";
 
+interface Artikel {
+  id: string;
+  titel: string;
+  slug: string;
+  beschrijving: string | null;
+  samenvatting: string | null;
+  afbeelding_url: string | null;
+  categorie: string | null;
+  status: string;
+  volgorde: number;
+  gepubliceerd_op: string | null;
+  aangemaakt_op: string;
+  bijgewerkt_op: string;
+}
+
 export default function ProjectenPage() {
-  const { artikelen, laden } = useArtikelen();
+  const [artikelen, setArtikelen] = useState<Artikel[]>([]);
+  const [laden, setLaden] = useState(true);
+
+  useEffect(() => {
+    fetch(`/api/cms/artikelen?_t=${Date.now()}`, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data) => setArtikelen(data.artikelen || []))
+      .catch(() => {})
+      .finally(() => setLaden(false));
+  }, []);
 
   const [activeYear, setActiveYear] = useState<number | "Alle">("Alle");
   const [activeCategory, setActiveCategory] = useState("Alle");
